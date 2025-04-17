@@ -1,5 +1,3 @@
-/*#include "playerList.cpp"
-
 using namespace std;
 
 class playerGenerator{
@@ -11,4 +9,4 @@ public:
     playerList generateRandom(playerList inputtedList, int numberToGenerate){
         return inputtedList;
     }
-};*/
+};
