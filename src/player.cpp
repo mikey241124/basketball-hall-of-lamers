@@ -1,6 +1,8 @@
 #include <string>
 using namespace std;
 
+//Merge Sort is Overrated, Quicksort better -Juan
+
 class player{
 private:
     //private variables holding each players name, age, points, assists, and rebounds
