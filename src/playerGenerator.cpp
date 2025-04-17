@@ -6,7 +6,7 @@ private:
 public:
     playerGenerator(){}
 
-    playerList generateRandom(playerList inputtedList, int numberToGenerate){
-        return inputtedList;
-    }
+    //playerList generateRandom(playerList inputtedList, int numberToGenerate){
+    //    return inputtedList;
+    //}
 };
