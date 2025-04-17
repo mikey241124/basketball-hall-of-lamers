@@ -1,4 +1,4 @@
-#include "playerList.cpp"
+/*#include "playerList.cpp"
 
 using namespace std;
 
@@ -11,4 +11,4 @@ public:
     playerList generateRandom(playerList inputtedList, int numberToGenerate){
         return inputtedList;
     }
-};
+};*/

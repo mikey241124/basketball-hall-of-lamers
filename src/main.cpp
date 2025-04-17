@@ -10,7 +10,7 @@ int main() {
     cout << "Welcome to the Basketball hall of lamers, the sports stat tracking app to show you the worst of the worst!" << endl;
 
     playerList players;
-    playerGenerator generator;
+    //playerGenerator generator;
     bool running = true;
 
     //loop to run code until user decides to exit
@@ -124,7 +124,7 @@ int main() {
                 try{
                     int numberGenerating = stoi(numberToGenerate);
                     validInput = true;
-                    players = generator.generateRandom(players, numberGenerating);
+                    //players = generator.generateRandom(players, numberGenerating);
                 } catch(invalid_argument){
                     cout << "Sorry, that input seems to be incorrect, please enter a number between 0-9." << endl;
                 }
