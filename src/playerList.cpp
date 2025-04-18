@@ -14,7 +14,7 @@ public:
   playerList(){}  
 
   //adds a new player to the list of players
-  void addPlayer(string name, int points, int assists, int rebounds){
+  void addPlayer(string name, float points, float assists, float rebounds){
     player newPlayer = player(name, points, assists, rebounds);
     players.push_back(newPlayer);
     numberOfPlayers++;
@@ -52,6 +52,24 @@ public:
             toReturn = "\n" + players[i].getName();
         } else{
             toReturn += "\n" + players[i].getName();
+        }
+    }
+    return toReturn;
+  }
+
+  string allPlayerStats(){
+    string toReturn = "";
+    for(int i = 0; i < numberOfPlayers; i++){
+        if(i == 0){
+            toReturn = "\n" + players[i].getName();
+            toReturn += " points are: " + to_string(players[i].getPoints());
+            toReturn += " assists are: " + to_string(players[i].getAssists());
+            toReturn += " rebounds are: " + to_string(players[i].getRebounds());
+        } else{
+            toReturn += "\n" + players[i].getName();
+            toReturn += " points are: " + to_string(players[i].getPoints());
+            toReturn += " assists are: " + to_string(players[i].getAssists());
+            toReturn += " rebounds are: " + to_string(players[i].getRebounds());
         }
     }
     return toReturn;

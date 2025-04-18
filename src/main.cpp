@@ -10,7 +10,8 @@ int main() {
     cout << "Welcome to the Basketball hall of lamers, the sports stat tracking app to show you the worst of the worst!" << endl;
 
     playerList players;
-    //playerGenerator generator;
+    playerGenerator generator;
+    generator.loadNames();
     bool running = true;
 
     //loop to run code until user decides to exit
@@ -20,11 +21,12 @@ int main() {
         cout << "Option 0: Close program." << endl;
         cout << "Option 1: Insert player to list." << endl;
         cout << "Option 2: Print all player names." << endl;
-        cout << "Option 3: Print the lowest 25 players sorted by points." << endl;
-        cout << "Option 4: Print the lowest 25 players sorted by assists." << endl;
-        cout << "Option 5: Print the lowest 25 players sorted by rebounds." << endl;
-        cout << "Option 6: Print the lowest 25 players sorted overall." << endl;
-        cout << "Option 7: Insert a number of randomly generated characters to list." << endl;
+        cout << "Option 3: Prins all player names and statistics." << endl;
+        cout << "Option 4: Print the lowest 25 players sorted by points." << endl;
+        cout << "Option 5: Print the lowest 25 players sorted by assists." << endl;
+        cout << "Option 6: Print the lowest 25 players sorted by rebounds." << endl;
+        cout << "Option 7: Print the lowest 25 players sorted overall." << endl;
+        cout << "Option 8: Insert a number of randomly generated characters to list." << endl;
 
         //get input
         int input = 0;
@@ -38,7 +40,7 @@ int main() {
         //if input == 1, add a new player to the roster
         else if(input == 1){
             string nameIn, pointsIn, assistsIn, reboundsIn;
-            int points, assists, rebounds;
+            float points, assists, rebounds;
             cout << "Please enter the players name." << endl;
             cin >> nameIn;
             //this takes in the input as a string and attempts to convert it to an integer. it will continue asking for input until a valid number 0-9 is given.
@@ -47,7 +49,7 @@ int main() {
                 cout << "Please enter the players number of Points Per Game (PPG)" << endl;
                 cin >> pointsIn;
                 try{
-                    points = stoi(pointsIn);
+                    points = stof(pointsIn);
                     validInput = true;
                 } catch(invalid_argument){
                     cout << "Sorry, that input seems to be incorrect, please enter a number between 0-9." << endl;
@@ -59,7 +61,7 @@ int main() {
                 cout << "Please enter the players number of assists" << endl;
                 cin >> assistsIn;
                 try{
-                    points = stoi(pointsIn);
+                    points = stof(pointsIn);
                     validInput = true;
                 } catch(invalid_argument){
                     cout << "Sorry, that input seems to be incorrect, please enter a number between 0-9." << endl;
@@ -71,7 +73,7 @@ int main() {
                 cout << "Please enter the players number of Rebounds Per Game (RBG)" << endl;
                 cin >> reboundsIn;
                 try{
-                    points = stoi(pointsIn);
+                    points = stof(pointsIn);
                     validInput = true;
                 } catch(invalid_argument){
                     cout << "Sorry, that input seems to be incorrect, please enter a number between 0-9." << endl;
@@ -88,34 +90,40 @@ int main() {
             cout << toPrint << endl;
         }
         else if(input == 3){
+            //prints out all the names of the players in the order that they are entered into the list.
+            string toPrint = players.allPlayerStats();
+            cout << "All of the entered players are as follows:";
+            cout << toPrint << endl;
+        }
+        else if(input == 4){
             //sort worst 25 players by points, need to make seperate implementation comparing merge sort and quick sort.
             vector<player> worstPoints = players.lowestPoints();
             for(int i = 0; i < worstPoints.size(); i++){
                 cout << "player # i stats" << endl;
             }
         }
-        else if(input == 4){
+        else if(input == 5){
             //sort worst 25 players by assists, need to make seperate implementation comparing merge sort and quick sort.
             vector<player> worstAssists = players.lowestAssists();
             for(int i = 0; i < worstAssists.size(); i++){
                 cout << "player # i stats" << endl;
             }
         }
-        else if(input == 5){
+        else if(input == 6){
             //sort worst 25 players by rebounds, need to make seperate implementation comparing merge sort and quick sort.
             vector<player> worstRebounds = players.lowestRebounds();
             for(int i = 0; i < worstRebounds.size(); i++){
                 cout << "player # i stats" << endl;
             }
         }
-        else if(input == 6){
+        else if(input == 7){
             //sort worst 25 players by overall stats, need to make seperate implementation comparing merge sort and quick sort.
             vector<player> worstOverall = players.lowestOverall();
             for(int i = 0; i < worstOverall.size(); i++){
                 cout << "player # i stats" << endl;
             }
         }
-        else if(input == 7){
+        else if(input == 8){
             string numberToGenerate;
             cout << "Please enter the number of players you would like to generate" << endl;
             bool validInput = false;
@@ -124,7 +132,7 @@ int main() {
                 try{
                     int numberGenerating = stoi(numberToGenerate);
                     validInput = true;
-                    //players = generator.generateRandom(players, numberGenerating);
+                    players = generator.generateRandom(players, numberGenerating);
                 } catch(invalid_argument){
                     cout << "Sorry, that input seems to be incorrect, please enter a number between 0-9." << endl;
                 }
