@@ -55,4 +55,9 @@ public:
     float getRebounds(){
         return rebounds;
     }
+
+    float getOverall(){
+        float total = (points * 0.5) + (assists * 0.3) + (rebounds * 0.2);
+        return total;
+    }
 };
