@@ -2,7 +2,7 @@
 #include <vector>
 #include "player.cpp"
 using namespace std;
-
+//"undefined ref to main", dont want main, compile error
 class playerList{
 private:
     vector<player> players;
@@ -21,30 +21,38 @@ public:
 
   //Function that sorts all players and returns the 25 with the least points
   vector<player> lowestPoints(){
-    //call the quicksort with whichStat = 0;
-    vector<player> toReturn;
-    return toReturn;
+    //call the quicksort with whichStat = 0; annd return vector
+    vector<player> sorted = players;
+    quickSort(sorted, 0, sorted.size()-1, 0); //vector size -> -1 always 
+    return vector<player>(sorted.begin(), sorted.begin()+min(25, (int)sorted.size()));
+    //formula above should give 25 players, ref for later:
+    //https://www.geeksforgeeks.org/stdmin-in-cpp/   min requires x &y of same type
+    //https://www.geeksforgeeks.org/type-casting-in-programming/ typecasting (the (int) above)
+    //together make super clean line that avoids an if+for loop
   }
 
   //Function that sorts all players and returns the 25 with the least assists
   vector<player> lowestAssists(){
     //call the quicksort with whichStat = 1;
-    vector<player> toReturn;
-    return toReturn;
+    vector<player> sorted = players;
+    quickSort(sorted, 0, sorted.size()-1, 1);
+    return vector<player>(sorted.begin(), sorted.begin()+min(25, (int)sorted.size()));
   }
 
   //Function that sorts all players and returns the 25 with the least rebounds
   vector<player> lowestRebounds(){
     //call the quicksort with whichStat = 2;
-    vector<player> toReturn;
-    return toReturn;
+    vector<player> sorted = players;
+    quickSort(sorted, 0, sorted.size()-1, 2);
+    return vector<player>(sorted.begin(), sorted.begin()+min(25, (int)sorted.size()));
   }
 
   //Function that sorts all players and returns the 25 with the lowest overall statistics
   vector<player> lowestOverall(){
     //call the quicksort with whichStat = 3;
-    vector<player> toReturn;
-    return toReturn;
+    vector<player> sorted = players;
+    quickSort(sorted, 0, sorted.size()-1, 3);
+    return vector<player>(sorted.begin(), sorted.begin()+min(25, (int)sorted.size()));
   }
 
 
@@ -92,7 +100,7 @@ public:
       return inputPlayer.getOverall();
     }
   }
-  //....cant decide how
+  
 
   //Function to return a string of all player names
   string allPlayerNames(){
