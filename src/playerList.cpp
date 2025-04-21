@@ -88,7 +88,7 @@ public:
     return truelow+1;
   }
 
-  //somwhow get number input into string , "points" "assist etc
+  //somehow get number input into string , "points" "assist etc
   float getWhichStatSelect(player inputPlayer, int dataType){
     if(dataType == 0){
       return inputPlayer.getPoints();
@@ -131,5 +131,59 @@ public:
         }
     }
     return toReturn;
+  }
+
+  //Code sourced from https://www.geeksforgeeks.org/merge-sort/
+  vector<player> mergeSort(vector<player>& playerVec, int left, int right, int whichStat){
+    if(left >= right){return playerVec;}
+    int mid = left + (right - left) / 2;
+    mergeSort(playerVec, left, mid, whichStat);
+    mergeSort(playerVec, mid+1, right, whichStat);
+    merge(playerVec, left, mid, right, whichStat);
+  }
+
+  void merge(vector<int>& playerVec, int left, int mid, int right, int whichStat){
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    //Make temp vectors cuh
+    vector<player> temp1(n1), temp2(n2);
+
+    //Copy data to temp vectors sigma
+    for(int i = 0; i < n1; i++){
+      temp1[i] = playerVec[left + i];
+    }
+    for(int i = 0; i < n2; i++){
+      temp2[i] = playerVec[mid + 1 + j];
+    }
+
+    int i, j = 0;
+    int k = left;
+
+    //Merge data
+    while(i < n1 && j < n2){
+      if(temp1[i].getWhichStatSelect() <= temp2[j].getWhichStatSelect()){
+        playerVec[k] = temp1[i];
+        i++;
+      }
+      else{
+        playerVec[k] = temp2[j];
+        j++;
+      }
+      k++;
+    }
+
+    //Clone remaining data if there's any left
+    while(i < n1){
+      playerStats[k] = temp1[i];
+      i++;
+      k++;
+    }
+
+    while(j < n2){
+      arr[k] = temp2[j];
+      j++;
+      k++;
+    }
   }
 };
