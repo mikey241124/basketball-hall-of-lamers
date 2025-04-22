@@ -1,6 +1,9 @@
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "player.cpp"
+#include <iostream>
+
 using namespace std;
 //"undefined ref to main", dont want main, compile error
 class playerList{
@@ -22,9 +25,11 @@ public:
   //Function that sorts all players and returns the 25 with the least points
   vector<player> lowestPoints(){
     //call the quicksort with whichStat = 0; annd return vector
-    vector<player> sorted = players;
-    quickSort(sorted, 0, sorted.size()-1, 0); //vector size -> -1 always 
-    return vector<player>(sorted.begin(), sorted.begin()+min(25, (int)sorted.size()));
+    
+        vector<player> sorted = players;
+        quickSort(sorted, 0, sorted.size()-1, 0); //vector size -> -1 always 
+        return vector<player>(sorted.begin(), sorted.begin()+min(25, (int)sorted.size()));
+
     //formula above should give 25 players, ref for later:
     //https://www.geeksforgeeks.org/stdmin-in-cpp/   min requires x &y of same type
     //https://www.geeksforgeeks.org/type-casting-in-programming/ typecasting (the (int) above)
@@ -60,12 +65,16 @@ public:
   //Pass actual vector of player to modify it, low and high are vector start/end
   //Update: need something to actually choose which player data we need (done)
   vector<player> quickSort(vector<player>& playerVec, int low, int high, int whichStat){
+    //cout << "quicksort is entered" << endl;
+    //cout << "the low is : " << low << " and the high is: " << high << endl;
     if(low<high){
       //Last player in vector is always the pivot, move everything w/ Partition func
       int calledPartition = partition(playerVec, low, high, whichStat);
       //First one is left half partition, second one is right half, double checked spacing
       quickSort(playerVec, low, calledPartition-1, whichStat);
       quickSort(playerVec, calledPartition+1, high, whichStat);
+      return playerVec;
+    } else{
       return playerVec;
     }
   }
@@ -142,7 +151,7 @@ public:
     merge(playerVec, left, mid, right, whichStat);
   }
 
-  void merge(vector<int>& playerVec, int left, int mid, int right, int whichStat){
+  void merge(vector<player>& playerVec, int left, int mid, int right, int whichStat){
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
@@ -154,7 +163,7 @@ public:
       temp1[i] = playerVec[left + i];
     }
     for(int i = 0; i < n2; i++){
-      temp2[i] = playerVec[mid + 1 + j];
+      temp2[i] = playerVec[mid + 1 + i];
     }
 
     int i, j = 0;
@@ -162,7 +171,7 @@ public:
 
     //Merge data
     while(i < n1 && j < n2){
-      if(temp1[i].getWhichStatSelect() <= temp2[j].getWhichStatSelect()){
+      if(getWhichStatSelect(temp1[i], whichStat) <= getWhichStatSelect(temp2[j], whichStat)){
         playerVec[k] = temp1[i];
         i++;
       }
@@ -175,13 +184,13 @@ public:
 
     //Clone remaining data if there's any left
     while(i < n1){
-      playerStats[k] = temp1[i];
+      playerVec[k] = temp1[i];
       i++;
       k++;
     }
 
     while(j < n2){
-      arr[k] = temp2[j];
+      playerVec[k] = temp2[j];
       j++;
       k++;
     }

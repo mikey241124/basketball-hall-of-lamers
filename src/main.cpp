@@ -98,29 +98,45 @@ int main() {
         else if(input == 4){
             //sort worst 25 players by points, need to make seperate implementation comparing merge sort and quick sort.
             vector<player> worstPoints = players.lowestPoints();
-            for(int i = 0; i < worstPoints.size(); i++){
-                cout << "player # i stats" << endl;
+            if(worstPoints.size() <= 0){
+                cout << "PlayerList is empty, please add players to the roster." << endl;
+            } else{ 
+                for(int i = 0; i < worstPoints.size(); i++){
+                cout << worstPoints[i].getName() + "'s points is: " << worstPoints[i].getPoints() << endl;
+                }
             }
         }
         else if(input == 5){
             //sort worst 25 players by assists, need to make seperate implementation comparing merge sort and quick sort.
-            vector<player> worstAssists = players.lowestAssists();
-            for(int i = 0; i < worstAssists.size(); i++){
-                cout << "player # i stats" << endl;
+            vector<player> worstPoints = players.lowestAssists();
+            if(worstPoints.size() <= 0){
+                cout << "PlayerList is empty, please add players to the roster." << endl;
+            } else{ 
+                for(int i = 0; i < worstPoints.size(); i++){
+                cout << worstPoints[i].getName() + "'s assists is: " << worstPoints[i].getAssists() << endl;
+                }
             }
         }
         else if(input == 6){
             //sort worst 25 players by rebounds, need to make seperate implementation comparing merge sort and quick sort.
-            vector<player> worstRebounds = players.lowestRebounds();
-            for(int i = 0; i < worstRebounds.size(); i++){
-                cout << "player # i stats" << endl;
+            vector<player> worstPoints = players.lowestRebounds();
+            if(worstPoints.size() <= 0){
+                cout << "PlayerList is empty, please add players to the roster." << endl;
+            } else{ 
+                for(int i = 0; i < worstPoints.size(); i++){
+                cout << worstPoints[i].getName() + "'s rebounds are: " << worstPoints[i].getRebounds() << endl;
+                }
             }
         }
         else if(input == 7){
             //sort worst 25 players by overall stats, need to make seperate implementation comparing merge sort and quick sort.
-            vector<player> worstOverall = players.lowestOverall();
-            for(int i = 0; i < worstOverall.size(); i++){
-                cout << "player # i stats" << endl;
+            vector<player> worstPoints = players.lowestOverall();
+            if(worstPoints.size() <= 0){
+                cout << "PlayerList is empty, please add players to the roster." << endl;
+            } else{ 
+                for(int i = 0; i < worstPoints.size(); i++){
+                cout << worstPoints[i].getName() + "'s overall stats are: " << worstPoints[i].getOverall() << endl;
+                }
             }
         }
         else if(input == 8){
