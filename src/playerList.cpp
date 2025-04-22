@@ -29,7 +29,8 @@ public:
         vector<player> quickSorted = players;
         quickSort(quickSorted, 0, quickSorted.size()-1, 0); //vector size -> -1 always
 
-        vector<player> mergeSorted = mergeSort(players, 0, players.size()-1, 0); //vector size -> -1 always 
+        vector<player> mergeSorted = players;
+        mergeSort(mergeSorted, 0, players.size()-1, 0); //vector size -> -1 always
 
         if(quickSorted.size() != mergeSorted.size()){
           cout << endl << "The two sorts yielded different results, please reset the program and contact an administrator" << endl << endl;
@@ -159,8 +160,8 @@ public:
   }
 
   //Code sourced from https://www.geeksforgeeks.org/merge-sort/
-  vector<player> mergeSort(vector<player>& playerVec, int left, int right, int whichStat){
-    if(left >= right){return playerVec;}
+  void mergeSort(vector<player>& playerVec, int left, int right, int whichStat){
+    if(left >= right){return;}
     int mid = left + (right - left) / 2;
     mergeSort(playerVec, left, mid, whichStat);
     mergeSort(playerVec, mid+1, right, whichStat);
