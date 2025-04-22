@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
 #include "playerList.cpp"
 #include "playerGenerator.cpp"
 
@@ -61,7 +62,7 @@ int main() {
                 cout << "Please enter the players number of assists" << endl;
                 cin >> assistsIn;
                 try{
-                    points = stof(pointsIn);
+                    assists = stof(assistsIn);
                     validInput = true;
                 } catch(invalid_argument){
                     cout << "Sorry, that input seems to be incorrect, please enter a number between 0-9." << endl;
@@ -73,7 +74,7 @@ int main() {
                 cout << "Please enter the players number of Rebounds Per Game (RBG)" << endl;
                 cin >> reboundsIn;
                 try{
-                    points = stof(pointsIn);
+                    rebounds = stof(reboundsIn);
                     validInput = true;
                 } catch(invalid_argument){
                     cout << "Sorry, that input seems to be incorrect, please enter a number between 0-9." << endl;
@@ -102,7 +103,7 @@ int main() {
                 cout << "PlayerList is empty, please add players to the roster." << endl;
             } else{ 
                 for(int i = 0; i < worstPoints.size(); i++){
-                cout << worstPoints[i].getName() + "'s points is: " << worstPoints[i].getPoints() << endl;
+                cout << worstPoints[i].getName() + "'s points is: " << round(worstPoints[i].getPoints() * 1000) / 1000 << endl;
                 }
             }
         }
@@ -113,7 +114,7 @@ int main() {
                 cout << "PlayerList is empty, please add players to the roster." << endl;
             } else{ 
                 for(int i = 0; i < worstPoints.size(); i++){
-                cout << worstPoints[i].getName() + "'s assists is: " << worstPoints[i].getAssists() << endl;
+                cout << worstPoints[i].getName() + "'s assists is: " << round(worstPoints[i].getAssists() * 1000) / 1000 << endl;
                 }
             }
         }
@@ -122,9 +123,9 @@ int main() {
             vector<player> worstPoints = players.lowestRebounds();
             if(worstPoints.size() <= 0){
                 cout << "PlayerList is empty, please add players to the roster." << endl;
-            } else{ 
+            } else{
                 for(int i = 0; i < worstPoints.size(); i++){
-                cout << worstPoints[i].getName() + "'s rebounds are: " << worstPoints[i].getRebounds() << endl;
+                cout << worstPoints[i].getName() + "'s rebounds are: " << round(worstPoints[i].getRebounds() * 1000) / 1000 << endl;
                 }
             }
         }
@@ -133,15 +134,15 @@ int main() {
             vector<player> worstPoints = players.lowestOverall();
             if(worstPoints.size() <= 0){
                 cout << "PlayerList is empty, please add players to the roster." << endl;
-            } else{ 
+            } else{
                 for(int i = 0; i < worstPoints.size(); i++){
-                cout << worstPoints[i].getName() + "'s overall stats are: " << worstPoints[i].getOverall() << endl;
+                cout << worstPoints[i].getName() + "'s overall stats are: " << round(worstPoints[i].getOverall() * 1000) / 1000 << endl;
                 }
             }
         }
         else if(input == 8){
             string numberToGenerate;
-            cout << "Please enter the number of players you would like to generate" << endl;
+            cout << "Please enter the number of players you would like to generate:" << endl;
             bool validInput = false;
             while(!validInput){
                 cin >> numberToGenerate;
@@ -156,7 +157,7 @@ int main() {
         }
         else{
             //DO NOT FORGET TO REPLACE THE PLACEHOLDER
-            cout << "sorry, your input seems to be invalid, please enter a number 0-placeholder." << endl;
+            cout << "Sorry, your input seems to be invalid, please enter a number 0-8." << endl;
         }
     }
 }

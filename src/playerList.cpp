@@ -26,9 +26,25 @@ public:
   vector<player> lowestPoints(){
     //call the quicksort with whichStat = 0; annd return vector
     
-        vector<player> sorted = players;
-        quickSort(sorted, 0, sorted.size()-1, 0); //vector size -> -1 always 
-        return vector<player>(sorted.begin(), sorted.begin()+min(25, (int)sorted.size()));
+        vector<player> quickSorted = players;
+        quickSort(quickSorted, 0, quickSorted.size()-1, 0); //vector size -> -1 always
+
+        vector<player> mergeSorted = mergeSort(players, 0, players.size()-1, 0); //vector size -> -1 always 
+
+        if(quickSorted.size() != mergeSorted.size()){
+          cout << endl << "The two sorts yielded different results, please reset the program and contact an administrator" << endl << endl;
+          return quickSorted;
+        }
+
+        for(int i = 0; i < quickSorted.size(); i++){
+          if(quickSorted[i].getOverall() != mergeSorted[i].getOverall()){
+            cout << endl << "The two sorts yielded different results, please reset the program and contact an administrator" << endl << endl;
+            return quickSorted;
+          }
+        }
+        
+        cout << endl << "Both sorts yielded the same results!" << endl << endl;
+        return vector<player>(quickSorted.begin(), quickSorted.begin()+min(25, (int)quickSorted.size()));
 
     //formula above should give 25 players, ref for later:
     //https://www.geeksforgeeks.org/stdmin-in-cpp/   min requires x &y of same type
