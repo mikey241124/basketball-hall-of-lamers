@@ -1,10 +1,15 @@
 #include <string>
 #include <vector>
+#include <chrono>
 #include <algorithm>
-#include "player.cpp"
 #include <iostream>
+#include <iomanip>
+
+#include "player.cpp"
 
 using namespace std;
+using namespace std::chrono;
+
 //"undefined ref to main", dont want main, compile error
 class playerList{
 private:
@@ -13,7 +18,7 @@ private:
 
 public:
   //default constructor
-  playerList(){}  
+  playerList(){}
 
   //adds a new player to the list of players
   void addPlayer(string name, float points, float assists, float rebounds){
@@ -24,26 +29,36 @@ public:
 
   //Function that sorts all players and returns the 25 with the least points
   vector<player> lowestPoints(){
-    //call the quicksort with whichStat = 0; annd return vector
+  //call the sorting functions with whichStat = 0; annd return vector
     
+        auto startQuick = high_resolution_clock::now();
+
         vector<player> quickSorted = players;
         quickSort(quickSorted, 0, quickSorted.size()-1, 0); //vector size -> -1 always
 
+        auto stopQuick = high_resolution_clock::now();
+
+        auto durationQuick = duration_cast<microseconds>(stopQuick - startQuick);
+
+        cout << "Time taken by quickSort function: " << durationQuick.count() << " microseconds" << endl;
+
+
+        auto startMerge = high_resolution_clock::now();
+
         vector<player> mergeSorted = players;
         mergeSort(mergeSorted, 0, players.size()-1, 0); //vector size -> -1 always
+
+        auto stopMerge = high_resolution_clock::now();
+
+        auto durationMerge = duration_cast<microseconds>(stopMerge - startMerge);
+
+        cout << "Time taken by mergeSort function: " << durationMerge.count() << " microseconds" << endl;
 
         if(quickSorted.size() != mergeSorted.size()){
           cout << endl << "The two sorts yielded different results, please reset the program and contact an administrator" << endl << endl;
           return quickSorted;
         }
 
-        for(int i = 0; i < quickSorted.size(); i++){
-          if(quickSorted[i].getOverall() != mergeSorted[i].getOverall()){
-            cout << endl << "The two sorts yielded different results, please reset the program and contact an administrator" << endl << endl;
-            return quickSorted;
-          }
-        }
-        
         cout << endl << "Both sorts yielded the same results!" << endl << endl;
         return vector<player>(quickSorted.begin(), quickSorted.begin()+min(25, (int)quickSorted.size()));
 
@@ -55,26 +70,109 @@ public:
 
   //Function that sorts all players and returns the 25 with the least assists
   vector<player> lowestAssists(){
-    //call the quicksort with whichStat = 1;
-    vector<player> sorted = players;
-    quickSort(sorted, 0, sorted.size()-1, 1);
-    return vector<player>(sorted.begin(), sorted.begin()+min(25, (int)sorted.size()));
+    //call the sorting functions with whichStat = 1;
+    auto startQuick = high_resolution_clock::now();
+
+    vector<player> quickSorted = players;
+    quickSort(quickSorted, 0, quickSorted.size()-1, 1); //vector size -> -1 always
+
+    auto stopQuick = high_resolution_clock::now();
+
+    auto durationQuick = duration_cast<microseconds>(stopQuick - startQuick);
+
+    cout << "Time taken by quickSort function: " << durationQuick.count() << " microseconds" << endl;
+
+
+    auto startMerge = high_resolution_clock::now();
+
+    vector<player> mergeSorted = players;
+    mergeSort(mergeSorted, 0, players.size()-1, 1); //vector size -> -1 always
+
+    auto stopMerge = high_resolution_clock::now();
+
+    auto durationMerge = duration_cast<microseconds>(stopMerge - startMerge);
+
+    cout << "Time taken by mergeSort function: " << durationMerge.count() << " microseconds" << endl;
+
+    if(quickSorted.size() != mergeSorted.size()){
+      cout << endl << "The two sorts yielded different results, please reset the program and contact an administrator" << endl << endl;
+      return quickSorted;
+    }
+
+    cout << endl << "Both sorts yielded the same results!" << endl << endl;
+    return vector<player>(quickSorted.begin(), quickSorted.begin()+min(25, (int)quickSorted.size()));
   }
 
   //Function that sorts all players and returns the 25 with the least rebounds
   vector<player> lowestRebounds(){
-    //call the quicksort with whichStat = 2;
-    vector<player> sorted = players;
-    quickSort(sorted, 0, sorted.size()-1, 2);
-    return vector<player>(sorted.begin(), sorted.begin()+min(25, (int)sorted.size()));
+    //call the sorting functions with whichStat = 2;
+    auto startQuick = high_resolution_clock::now();
+
+    vector<player> quickSorted = players;
+    quickSort(quickSorted, 0, quickSorted.size()-1, 2); //vector size -> -1 always
+
+    auto stopQuick = high_resolution_clock::now();
+
+    auto durationQuick = duration_cast<microseconds>(stopQuick - startQuick);
+
+    cout << "Time taken by quickSort function: " << durationQuick.count() << " microseconds" << endl;
+
+
+
+    auto startMerge = high_resolution_clock::now();
+
+    vector<player> mergeSorted = players;
+    mergeSort(mergeSorted, 0, players.size()-1, 2); //vector size -> -1 always
+
+    auto stopMerge = high_resolution_clock::now();
+
+    auto durationMerge = duration_cast<microseconds>(stopMerge - startMerge);
+
+    cout << "Time taken by mergeSort function: " << durationMerge.count() << " microseconds" << endl;
+
+    if(quickSorted.size() != mergeSorted.size()){
+      cout << endl << "The two sorts yielded different results, please reset the program and contact an administrator" << endl << endl;
+      return quickSorted;
+    }
+
+    cout << endl << "Both sorts yielded the same results!" << endl << endl;
+    return vector<player>(quickSorted.begin(), quickSorted.begin()+min(25, (int)quickSorted.size()));
   }
 
   //Function that sorts all players and returns the 25 with the lowest overall statistics
   vector<player> lowestOverall(){
-    //call the quicksort with whichStat = 3;
-    vector<player> sorted = players;
-    quickSort(sorted, 0, sorted.size()-1, 3);
-    return vector<player>(sorted.begin(), sorted.begin()+min(25, (int)sorted.size()));
+    //Call the sorting functions with the whichStat set to 3;
+    auto startQuick = high_resolution_clock::now();
+
+    vector<player> quickSorted = players;
+    quickSort(quickSorted, 0, quickSorted.size()-1, 3); //vector size -> -1 always
+
+    auto stopQuick = high_resolution_clock::now();
+
+    auto durationQuick = duration_cast<microseconds>(stopQuick - startQuick);
+
+    cout << "Time taken by quickSort function: " << durationQuick.count() << " microseconds" << endl;
+
+
+
+    auto startMerge = high_resolution_clock::now();
+
+    vector<player> mergeSorted = players;
+    mergeSort(mergeSorted, 0, players.size()-1, 3); //vector size -> -1 always
+
+    auto stopMerge = high_resolution_clock::now();
+
+    auto durationMerge = duration_cast<microseconds>(stopMerge - startMerge);
+
+    cout << "Time taken by mergeSort function: " << durationMerge.count() << " microseconds" << endl;
+
+    if(quickSorted.size() != mergeSorted.size()){
+      cout << endl << "The two sorts yielded different results, please reset the program and contact an administrator" << endl << endl;
+      return quickSorted;
+    }
+
+    cout << endl << "Both sorts yielded the same results!" << endl << endl;
+    return vector<player>(quickSorted.begin(), quickSorted.begin()+min(25, (int)quickSorted.size()));
   }
 
 
@@ -144,16 +242,20 @@ public:
   string allPlayerStats(){
     string toReturn = "";
     for(int i = 0; i < numberOfPlayers; i++){
+        stringstream sPoints, sAssists, sRebounds;
+        sPoints << fixed << setprecision(1) << players[i].getPoints();
+        sAssists << fixed << setprecision(1) << players[i].getAssists();
+        sRebounds << fixed << setprecision(1) << players[i].getRebounds();
         if(i == 0){
             toReturn = "\n" + players[i].getName();
-            toReturn += " points are: " + to_string(players[i].getPoints());
-            toReturn += " assists are: " + to_string(players[i].getAssists());
-            toReturn += " rebounds are: " + to_string(players[i].getRebounds());
+            toReturn += " points are: " + sPoints.str();
+            toReturn += " assists are: " + sAssists.str();
+            toReturn += " rebounds are: " + sRebounds.str();
         } else{
             toReturn += "\n" + players[i].getName();
-            toReturn += " points are: " + to_string(players[i].getPoints());
-            toReturn += " assists are: " + to_string(players[i].getAssists());
-            toReturn += " rebounds are: " + to_string(players[i].getRebounds());
+            toReturn += " points are: " + sPoints.str();
+            toReturn += " assists are: " + sAssists.str();
+            toReturn += " rebounds are: " + sRebounds.str();
         }
     }
     return toReturn;

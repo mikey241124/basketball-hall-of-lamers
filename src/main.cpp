@@ -68,7 +68,7 @@ int main() {
                     cout << "Sorry, that input seems to be incorrect, please enter a number between 0-9." << endl;
                 }
             }
-            //this takes in the input as a string and attempts to convert it to an integer. it will continue asking for input until a valid number 0-9 is given.            
+            //this takes in the input as a string and attempts to convert it to an integer. it will continue asking for input until a valid number 0-9 is given.
             validInput = false;
             while(!validInput){
                 cout << "Please enter the players number of Rebounds Per Game (RBG)" << endl;
