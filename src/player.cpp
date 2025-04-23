@@ -7,7 +7,7 @@ class player{
 private:
     //private variables holding each players name, age, points, assists, and rebounds
     string name;
-    int points, assists, rebounds;
+    float points, assists, rebounds;
 
 public:
     //default constructor used to create a plater
@@ -19,7 +19,7 @@ public:
     }
     
     //parametrized constructor creating a player with a name and all 3 stats
-    player(string nameIn, int pointsIn, int assistsIn, int reboundsIn){
+    player(string nameIn, float pointsIn, float assistsIn, float reboundsIn){
         name = nameIn;
         points = pointsIn;
         assists = assistsIn;
@@ -27,15 +27,15 @@ public:
     }
 
     //setter methods to modify the statistics of a player.
-    void setPoints(int pointsIn){
+    void setPoints(float pointsIn){
         points = pointsIn;
     }
 
-    void setAssists(int assistsIn){
+    void setAssists(float assistsIn){
         assists = assistsIn;
     }
 
-    void setRebounds(int reboundsIn){
+    void setRebounds(float reboundsIn){
         rebounds = reboundsIn;
     }
 
@@ -44,15 +44,20 @@ public:
         return name;
     }
 
-    int getPoints(){
+    float getPoints(){
         return points;
     }
 
-    int getAssists(){
+    float getAssists(){
         return assists;
     }
 
-    int getRebounds(){
+    float getRebounds(){
         return rebounds;
+    }
+
+    float getOverall(){
+        float total = (points * 0.5) + (assists * 0.3) + (rebounds * 0.2);
+        return total;
     }
 };
